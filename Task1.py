@@ -63,7 +63,7 @@ Y3, A3 = rotation(Y2, np.pi / 4);
 show(Y2, Y3, A3, "Stretch + Shear + Rotation", color = 'tab:blue')
 M1 = A3 @ A2 @ A
 F1 = Y3
-print("Combined matrix (S -> H -> R):\n", np.round(M1, 4))
+print("Combined matrix (S -> SH -> R):\n", np.round(M1, 4))
 
     #2
 Y, A = rotation(batman, np.pi / 4);
@@ -74,7 +74,7 @@ Y3, A3 = shear(Y2, 0.5, 0);
 show(Y2, Y3, A3, "Rotation + Stretch + Shear", color = 'tab:red')
 M2 = A3 @ A2 @ A
 F2 = Y3
-print("Combined matrix (S -> H -> R):\n", np.round(M2, 4))
+print("Combined matrix (R -> S -> SH):\n", np.round(M2, 4))
 
 
     #3
@@ -86,7 +86,7 @@ Y3, A3 = stretch(Y2, 1.5, 0.7)
 show(Y2, Y3, A3, "Shear + Rotation + Stretch", color = 'tab:green')
 M3 = A3 @ A2 @ A
 F3 = Y3
-print("Combined matrix (S -> H -> R):\n", np.round(M3, 4))
+print("Combined matrix (SH -> R -> S):\n", np.round(M3, 4))
 
 
 fig, ax = plt.subplots(figsize=(6, 6))

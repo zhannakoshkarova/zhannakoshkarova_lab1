@@ -71,3 +71,13 @@ print(np.round(A, 4))
 new_vertices, A = apply(vertices, rotate_xz, np.pi / 4)
 plot_off(new_vertices, faces, "rotate_xz, 45 deg")
 print(np.round(A, 4))
+
+#combined
+
+v1, A1 = apply(vertices, rotate_xy, np.pi / 4)
+v2, A2 = apply(v1, rotate_yz, np.pi / 4)
+v3, A3 = apply(v2, rotate_xz, np.pi / 4)
+M = A3 @ A2 @ A1
+
+plot_off(v3, faces, "xy -> yz -> xz")
+print("Combined matrix:\n", np.round(M, 4))
