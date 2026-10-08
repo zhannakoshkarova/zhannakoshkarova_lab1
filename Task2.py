@@ -17,10 +17,8 @@ def plot_off(vertices, faces, title=""):
     ax = fig.add_subplot(111, projection='3d')
 
     mesh = Poly3DCollection([vertices[face] for face in faces],
-                            alpha=0.3, edgecolor='k')
+                            alpha=0.7, edgecolor='k', facecolor='tab:blue')
     ax.add_collection3d(mesh)
-
-    ax.scatter(vertices[:, 0], vertices[:, 1], vertices[:, 2], s=2, c='r')
 
     ax.set_xlabel("X")
     ax.set_ylabel("Y")
@@ -56,7 +54,7 @@ def apply(vertices, rotate_fn, theta):
     return Y.T, A
 
 
-vertices, faces = read_off("path")
+vertices, faces = read_off("/Users/ai/.cache/kagglehub/datasets/balraj98/modelnet40-princeton-3d-object-dataset/versions/1/ModelNet40/airplane/test/airplane_0627.off")
 print(vertices.shape)
 print(faces[:3])
 
