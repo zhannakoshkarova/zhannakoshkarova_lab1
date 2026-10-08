@@ -11,6 +11,25 @@ def read_off(filename: str):
         faces = [list(map(int, f.readline().strip().split()[1:])) for _ in range(n_faces)]
     return np.array(verts), faces
 
+
+def plot_off(vertices, faces, title=""):
+    fig = plt.figure(figsize=(8, 8))
+    ax = fig.add_subplot(111, projection='3d')
+
+    mesh = Poly3DCollection([vertices[face] for face in faces],
+                            alpha=0.3, edgecolor='k')
+    ax.add_collection3d(mesh)
+
+    ax.scatter(vertices[:, 0], vertices[:, 1], vertices[:, 2], s=2, c='r')
+
+    ax.set_xlabel("X")
+    ax.set_ylabel("Y")
+    ax.set_zlabel("Z")
+    ax.set_title(title)
+
+    ax.auto_scale_xyz(vertices[:, 0], vertices[:, 1], vertices[:, 2])
+    plt.show()
+
 def rotate_xy (X,theta):
     X = np.array(X, copy=True)
     A = np.array([[np.cos(theta), - np.sin(theta), 0],
