@@ -52,6 +52,24 @@ show(batman, Y, A, "Reflection (line y = x)")
 Y, A = rotation(batman, np.pi / 4);
 show(batman, Y, A, "Rotation (45 deg)")
 
+#compare different matrix elements affects
+def compare(fn, params_list, X, name):
+    fig, axs = plt.subplots(1, len(params_list), figsize=(4 * len(params_list), 4))
+    for ax, p in zip(axs, params_list):
+        Y, A = fn(X, *p)
+        ax.fill(X[0], X[1], color='gray', alpha=0.3)
+        ax.fill(Y[0], Y[1], color='tab:blue', alpha=0.5)
+        ax.axhline(0, color='k', lw=0.5); ax.axvline(0, color='k', lw=0.5)
+        ax.set_aspect('equal')
+        ax.set_title(f"{name}{p}")
+        print(name, p, np.round(A, 3).tolist())
+    plt.show()
+
+compare(stretch,    [(2, 1), (0.5, 1), (1, -1), (2, 2), (1, 0)], batman, "stretch")
+compare(shear,      [(0.5, 0), (0, 0.5), (0.5, 0.5), (-0.5, 0)], batman, "shear")
+compare(reflection, [(1, 0), (0, 1), (1, -1), (2, 1)], batman, "reflection")
+compare(rotation,   [(np.pi/6,), (np.pi/2,), (np.pi,), (-np.pi/4,)], batman, "rotation")
+
 # combined
 
     #1
