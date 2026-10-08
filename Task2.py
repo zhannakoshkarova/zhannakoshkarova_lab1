@@ -50,3 +50,26 @@ def rotate_xz (X,theta):
                   [0, 1, 0],
                   [np.sin(theta),0, np.cos(theta)]])
     return A @ X, A
+
+def apply(vertices, rotate_fn, theta):
+    Y, A = rotate_fn(vertices.T, theta)
+    return Y.T, A
+
+
+vertices, faces = read_off("path")
+print(vertices.shape)
+print(faces[:3])
+
+plot_off(vertices, faces, "Original")
+
+new_vertices, A = apply(vertices, rotate_xy, np.pi / 4)
+plot_off(new_vertices, faces, "rotate_xy, 45 deg")
+print(np.round(A, 4))
+
+new_vertices, A = apply(vertices, rotate_yz, np.pi / 4)
+plot_off(new_vertices, faces, "rotate_yz, 45 deg")
+print(np.round(A, 4))
+
+new_vertices, A = apply(vertices, rotate_xz, np.pi / 4)
+plot_off(new_vertices, faces, "rotate_xz, 45 deg")
+print(np.round(A, 4))
